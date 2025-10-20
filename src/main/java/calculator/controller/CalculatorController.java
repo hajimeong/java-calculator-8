@@ -36,6 +36,7 @@ public class CalculatorController {
         List<Integer> integerList = parsing.parsing(splitList);
 
         //6. 계산 수행
+        validator.validateNegativeInteger(integerList);
         Integer result = calculator.calculate(integerList);
 
         //7. 결과 출력

@@ -2,6 +2,8 @@ package calculator.model;
 
 import calculator.entity.SeparatorEntity;
 
+import java.util.List;
+
 public class Validator {
 
     //사용자 입력 형식 검증
@@ -48,6 +50,14 @@ public class Validator {
         for(char c:numberPart.toCharArray()){
             if(!Character.isDigit(c)&&!separator.contains(String.valueOf(c))){
                 throw new IllegalArgumentException("구분자가 아닌 다른 문자가 포함되어 있습니다.");
+            }
+        }
+    }
+
+    public void validateNegativeInteger(List<Integer> numbers){
+        for(int number:numbers){
+            if(number<0){
+                throw new IllegalArgumentException("음수는 포함할 수 없습니다.");
             }
         }
     }
