@@ -20,6 +20,8 @@ public class Separator {
             int newLineIndex=userInput.indexOf("\\n");
 
             String customSeparator=userInput.substring(2, newLineIndex);
+            //구분자 이스케이프 처리 후 저장
+            customSeparator=escapeRegex(customSeparator);
             numberPart=userInput.substring(newLineIndex+2);
             separator=separator+"|"+customSeparator;
         }
@@ -36,5 +38,10 @@ public class Separator {
         }
 
         return Arrays.asList(numberPart.split(separator));
+    }
+
+    //이스케이프 처리
+    private String escapeRegex(String separator){
+        return separator.replaceAll("([\\\\.^$|?*)+()\\[\\]{}])","\\\\$1");
     }
 }
