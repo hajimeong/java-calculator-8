@@ -27,3 +27,29 @@
 ### 예외처리
 조건에 맞지 않는 입력이 들어올 경우 IllegalArgumentException을 발생시킨 후
 애플리케이션 종료
+
+## 파일 별 구현 기능
+### Controller
+- `CalculatorController`: 모든 기능을 통합해 전체 로직 구현
+
+### Entity
+- `SeparatorEntity`: 구분자와 계산할 문자열을 저장한 엔티티
+
+### Model
+- `Calculator`: 문자열로부터 추출한 숫자들의 sum 계산
+- `ParseToInteger`: 구분자를 기분으로 분리된 문자열 배열을 숫자 배열로 변환
+- `Separator`: 기본 구분자 또는 커스텀 구분자 추출 후 저장 및 구분자 기준으로 문자열 분리
+  - 커스텀 구분자가 특수 문자인 경우 이스케이프 처리 후 entity에 저장
+  - 커스텀 구분자가 있는 경우, 기본 구분자와 함께 entity의 separator에 저장 및 커스텀 정의 형식을 분리해서 나머지 문자열을 entity의 numberPart에 저장
+  - 커스텀 구분자가 없는 경우, 기본 구분자를 entity의 separator에 저장 및 사용자 입력 문자열을 entity의 numberPart에 저장
+- `Validator`: 문자열 및 커스텀 구분자 조건 예외 처리
+  - "//"로 시작하는데 "\n"이 없는 경우
+  - "//"가 없는데 "\n"이 있는 경우
+  - "//"와 "\n"이 존재하지만 커스텀 구분자가 비어있는 경우
+  - 커스텀 구분자가 숫자인 경우
+  - 정의된 구분자가 아닌 다른 문자가 포함되어 있는 경우
+  - 숫자가 음수인 경우
+
+### View
+- `InputView`: 사용자로부터 문자열 입력 받음
+- `OutputView`: 결과 값 출력
