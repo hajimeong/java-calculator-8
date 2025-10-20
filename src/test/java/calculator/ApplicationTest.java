@@ -41,6 +41,14 @@ class ApplicationTest extends NsTest {
     }
 
     @Test
+    void 이스케이프_커스텀_구분자_테스트(){
+        assertSimpleTest(()->{
+            run("//*\\n1*2*3");
+            assertThat(output()).contains("결과 : 6");
+        });
+    }
+
+    @Test
     void 커스텀_기본_구분자_테스트(){
         assertSimpleTest(()->{
             run("//;\\n1;2,3:4");
